@@ -28,7 +28,7 @@ const Post = ({ p }) => {
                         <p>{post}</p>
                     </div>
                 </div>
-                <img src={photo} alt="" width='500' />
+                <img src={photo} alt="" width='600' />
                 <div className="post_footer">
                     <ChatBubbleOutlineIcon className='post_footer_icon' fontSize='small' />
                     <RepeatIcon className='post_footer_icon' fontSize='small' />

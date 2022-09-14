@@ -52,12 +52,14 @@
     gap: 10px;
 }
 
-.user_info>h4 {
+.user_info>h4,
+.user_info>div>h4 {
     font-size: 14px;
     margin-bottom: 0;
 }
 
-.user_info>h5 {
+.user_info>h5,
+.user_info>div>h5 {
     opacity: 50%;
     margin-top: 0;
 }
