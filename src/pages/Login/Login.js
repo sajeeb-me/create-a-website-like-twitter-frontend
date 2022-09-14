@@ -55,7 +55,6 @@ const Login = () => {
                 <div className='form-box'>
                     <TwitterIcon style={{ color: 'skyblue' }} />
                     <h2 className='heading'>Happing now</h2>
-                    <h3 className='heading1'>What happening today</h3>
                     <form onSubmit={handleSubmit}>
                         <input
                             type="email"
