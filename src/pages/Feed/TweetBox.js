@@ -3,12 +3,22 @@ import React, { useState } from 'react';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import axios from 'axios'
 import './TweetBox.css'
+import useLoggedInUser from '../../hooks/useLoggedInUser';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const TweetBox = () => {
     const [post, setPost] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [isLoading, setIsLoading] = useState('');
+    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
+    const [loggedInUser] = useLoggedInUser();
+    // console.log(loggedInUser)
+    const [user] = useAuthState(auth);
+    const email = user?.email;
 
+    const userProfilePic = loggedInUser[0]?.profileImage ? loggedInUser[0]?.profileImage : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
 
     const handleUploadImage = (e) => {
         setIsLoading(true);
@@ -31,12 +41,30 @@ const TweetBox = () => {
 
     const handleTweet = (e) => {
         e.preventDefault();
-        if (imageURL) {
+        if (user.providerData[0].providerId === 'password') {
+            fetch(`http://localhost:5000/loggedInUser?email=${email}`)
+                .then(res => res.json())
+                .then(data => {
+                    setName(data[0]?.name)
+                    setUsername(data[0]?.username)
+                })
+        }
+        else {
+            setName(user?.displayName)
+            setUsername(email?.split('@')[0])
+        }
+        if (name) {
             const userPost = {
+                profilePhoto: userProfilePic,
                 post: post,
-                photo: imageURL
+                photo: imageURL,
+                username: username,
+                name: name,
+                email: email
             }
-            console.log(userPost);
+            // console.log(userPost);
+            setPost('');
+            setImageURL('');
             fetch(`http://localhost:5000/post`, {
                 method: "POST",
                 headers: {
@@ -60,6 +88,8 @@ const TweetBox = () => {
                         type="text"
                         placeholder="What's happening?"
                         onChange={(e) => setPost(e.target.value)}
+                        value={post}
+                        required
                     />
                 </div>
                 <div className="imageIcon_tweetButton">
