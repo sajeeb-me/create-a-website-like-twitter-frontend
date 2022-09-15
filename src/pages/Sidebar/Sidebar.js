@@ -86,7 +86,7 @@ const Sidebar = ({ handleLogout, user }) => {
                 </IconButton>
                 <Menu id='basic-menu' anchorEl={anchorEl} open={openMenu} onClick={handleClose} onClose={handleClose}>
                     <MenuItem className='Profile_info1'>
-                        <Avatar src='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' />
+                        <Avatar src={userProfilePic} />
                         <div className="user_info subUser_info">
                             <div>
                                 <h4>
