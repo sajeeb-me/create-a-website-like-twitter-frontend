@@ -42,7 +42,7 @@ const TweetBox = () => {
     const handleTweet = (e) => {
         e.preventDefault();
         if (user.providerData[0].providerId === 'password') {
-            fetch(`http://localhost:5000/loggedInUser?email=${email}`)
+            fetch(`https://gentle-everglades-50539.herokuapp.com/loggedInUser?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setName(data[0]?.name)
@@ -65,7 +65,7 @@ const TweetBox = () => {
             // console.log(userPost);
             setPost('');
             setImageURL('');
-            fetch(`http://localhost:5000/post`, {
+            fetch(`https://gentle-everglades-50539.herokuapp.com/post`, {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'

@@ -48,7 +48,7 @@ const Signup = () => {
             email: email,
         }
 
-        axios.post(`http://localhost:5000/register`, user)
+        axios.post(`https://gentle-everglades-50539.herokuapp.com/register`, user)
     }
     const handleGoogleSignIn = () => {
         signInWithGoogle();

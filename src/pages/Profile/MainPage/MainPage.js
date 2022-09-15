@@ -18,7 +18,7 @@ const MainPage = ({ user }) => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/userPost?email=${user?.email}`)
+        fetch(`https://gentle-everglades-50539.herokuapp.com/userPost?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setPosts(data)
@@ -42,7 +42,7 @@ const MainPage = ({ user }) => {
                 }
                 setIsLoading(false);
                 if (url) {
-                    axios.patch(`http://localhost:5000/userUpdates/${user?.email}`, userCoverImage)
+                    axios.patch(`https://gentle-everglades-50539.herokuapp.com/userUpdates/${user?.email}`, userCoverImage)
                 }
             })
     }
@@ -62,7 +62,7 @@ const MainPage = ({ user }) => {
                 }
                 setIsLoading(false);
                 if (url) {
-                    axios.patch(`http://localhost:5000/userUpdates/${user?.email}`, userProfileImage)
+                    axios.patch(`https://gentle-everglades-50539.herokuapp.com/userUpdates/${user?.email}`, userProfileImage)
                 }
             })
     }
@@ -113,13 +113,13 @@ const MainPage = ({ user }) => {
                                         </h3>
                                         <p className='usernameSection'>@{username}</p>
                                     </div>
-                                    <EditProfile />
+                                    <EditProfile user={user} loggedInUser={loggedInUser} />
                                 </div>
                                 <div className="infoContainer">
                                     {loggedInUser[0]?.bio ? loggedInUser[0]?.bio : ''}
                                     <div className="locationAndLink">
-                                        {loggedInUser[0]?.location ? <p className='sunInfo'><MyLocationIcon />{loggedInUser[0]?.location}</p> : ''}
-                                        {loggedInUser[0]?.website ? <p className='sunInfo'><AddLinkIcon />{loggedInUser[0]?.website}</p> : ''}
+                                        {loggedInUser[0]?.location ? <p className='subInfo'><MyLocationIcon />{loggedInUser[0]?.location}</p> : ''}
+                                        {loggedInUser[0]?.website ? <p className='subInfo link'><AddLinkIcon />{loggedInUser[0]?.website}</p> : ''}
                                     </div>
                                 </div>
                                 <h4 className='tweetsText'>Tweets</h4>
